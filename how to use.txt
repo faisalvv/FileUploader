@@ -1,0 +1,21 @@
+public FileUploader uploader=new FileUploader();
+ uploader.Chooser(webView, getActivity(), new FileUploader.callBackListner() {
+            @Override
+            public void cancelOpenChooser() {
+               //handle here canceled request from file chooser.
+                AppLog.d("dooth-chat","cancel file chooser popup");
+            }
+        });
+
+
+# //set the on activity result in Activity class or fragment class  
+ public void onActivityResult(int requestCode, int resultCode, Intent data) {
+       fileUploader.setActivityResult(requestCode,resultCode,data);
+ }
+# //set the permission request result here
+  @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        Log.e("dooth-permission","onRequestPermissionsResult 1");
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        fileUploader.setRequestPermissionsResult(requestCode, permissions, grantResults);
+      }
