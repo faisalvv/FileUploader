@@ -1,4 +1,3 @@
-package com.practicesuite.hipaaoffice.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -98,7 +97,7 @@ public class FileUploader {
                     if (!hasPermissions(FileUploader.callingActivity, PERMISSIONS)) {
                         AppLog.d("dooth-chat","!hasPermissions");
                         ActivityCompat.requestPermissions(FileUploader.callingActivity, PERMISSIONS, 100);
-                        //listner.pendingOpenedChooserForPermission(filePathCallback, FileUploader.callingActivity);
+                        listner.pendingOpenedChooserForPermission(filePathCallback, FileUploader.callingActivity);
                     }else {
                         AppLog.d("dooth-chat","already granded");
                         // listner.onOpenedChooser(filePathCallback,callingActivity);
@@ -151,8 +150,6 @@ public class FileUploader {
                         }
                     }
                 }
-            }else {
-                listner.cancelOpenChooser();
             }
             mUMA.onReceiveValue(results);
             mUMA = null;
@@ -176,23 +173,8 @@ public class FileUploader {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     Log.e("dooth-permission","onRequestPermissionsResult");
                     openChooser();
-                   /* if (currentApp=="CHAT"){
-                        ChatFragment chatFragment = (ChatFragment) getSupportFragmentManager().findFragmentById(R.id.chatfragmentcontainer);
-                        chatFragment.openChooser();
-                    }else if (currentApp=="MAIL"){
-                        MailFragment mailFragment = (MailFragment) getSupportFragmentManager().findFragmentById(R.id.chatfragmentcontainer);
-                        mailFragment.openChooser();
-                    }*/
-
                 } else {
                     initChooser(webView, callingActivity, listner);
-                   /* if (currentApp=="CHAT"){
-                        ChatFragment chatFragment = (ChatFragment) getSupportFragmentManager().findFragmentById(R.id.chatfragmentcontainer);
-                        chatFragment.initOpenChooser();
-                    }else if (currentApp=="MAIL"){
-                        MailFragment mailFragment = (MailFragment) getSupportFragmentManager().findFragmentById(R.id.chatfragmentcontainer);
-                        mailFragment.initOpenChooser();
-                    }*/
                 }
             }
         }
@@ -238,9 +220,8 @@ public class FileUploader {
 
     /**add listeners for call back */
     public interface callBackListner{
-        void cancelOpenChooser();
-        //void onOpenedChooser(ValueCallback<Uri[]> filePathCallback, Activity callingActivity);
-        //void pendingOpenedChooserForPermission(ValueCallback<Uri[]> filePathCallback, Activity callingActivity);
+        void onOpenedChooser(ValueCallback<Uri[]> filePathCallback, Activity callingActivity);
+        void pendingOpenedChooserForPermission(ValueCallback<Uri[]> filePathCallback, Activity callingActivity);
     }
 
 }
