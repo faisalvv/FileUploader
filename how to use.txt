@@ -3,7 +3,7 @@ public FileUploader uploader=new FileUploader();
             @Override
             public void cancelOpenChooser() {
                //handle here canceled request from file chooser.
-                AppLog.d("dooth-chat","cancel file chooser popup");
+                AppLog.d("chat","cancel file chooser popup");
             }
         });
 
