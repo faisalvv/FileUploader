@@ -3,7 +3,7 @@ public FileUploader uploader=new FileUploader();
             @Override
             public void cancelOpenChooser() {
                //handle here canceled request from file chooser.
-                AppLog.d("chat","cancel file chooser popup");
+                Log.d("uy","cancel file chooser popup");
             }
         });
 
@@ -15,7 +15,7 @@ public FileUploader uploader=new FileUploader();
 # //set the permission request result here
   @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        Log.e("dooth-permission","onRequestPermissionsResult 1");
+        Log.e("permission","onRequestPermissionsResult 1");
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         fileUploader.setRequestPermissionsResult(requestCode, permissions, grantResults);
       }
